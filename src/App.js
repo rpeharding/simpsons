@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
 import Interface from "./Interface";
-import Header from "./Header";
 
 class App extends Component {
   state = {};
@@ -19,15 +18,12 @@ class App extends Component {
   };
 
   render() {
-    // console.log(this.state.simpsons);
-    // pass this state down to interface- see video
-
     if (!this.state.simpsons) {
       return <p>Loading</p>;
     }
+
     return (
       <>
-        <Header />
         <Interface simpsons={this.state.simpsons} />
       </>
     );

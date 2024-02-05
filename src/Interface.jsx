@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Character from "./Character";
+import Header from "./Header";
 
 class Interface extends Component {
   render() {
@@ -7,14 +8,17 @@ class Interface extends Component {
     console.log(simpsons);
 
     return (
-      <div className="characters">
-        {simpsons?.map((simpson) => {
-          return (
-            <Character key={simpsons.indexOf(simpson)} simpson={simpson} />
-          );
-        })}
-        ;
-      </div>
+      <>
+        <Header />
+        <div className="characters">
+          {simpsons?.map((simpson) => {
+            return (
+              <Character key={simpsons.indexOf(simpson)} simpson={simpson} />
+            );
+          })}
+          ;
+        </div>
+      </>
     );
   }
 }

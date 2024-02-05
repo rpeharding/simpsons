@@ -11,7 +11,7 @@ class Header extends Component {
         <img className="logo" alt="simpsons logo" src={logo} />
         <div className="header-content">
           <div className="header-copy">
-            <h1>Quotes from your favourite characters</h1>{" "}
+            <h1>Quotes from your favourite characters</h1>
             <input
               type="input"
               name="search"

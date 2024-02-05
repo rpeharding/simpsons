@@ -7,6 +7,8 @@ body {
 
 .flex {
   display: flex;
+  gap: 10px;
+  margin-top: 40px;
 }
 
 h3 {
@@ -88,6 +90,7 @@ input {
 .quote-flex {
   display: flex;
   justify-content: space-between;
+  gap: 40px;
 }
 .quote-flex > p {
   width: 50%;
@@ -109,5 +112,17 @@ input {
 }
 
 .icon {
-  width: 30px;
+  width: 40px;
+  fill: #60178d;
+}
+
+.btn {
+  background-color: #60178d;
+  color: white;
+  padding: 0px 20px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
 }

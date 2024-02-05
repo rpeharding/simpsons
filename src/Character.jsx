@@ -1,12 +1,16 @@
 import React, { Component } from "react";
-import bin from "./images/bin.svg";
 import like from "./images/like.svg";
+import Name from "./Name";
+import Quote from "./Quote";
+import Image from "./Image";
+import Button from "./Button";
 
 class Character extends Component {
   state = { liked: false };
 
   render() {
-    const { character, quote, image, characterDirection } = this.props.simpson;
+    const { simpson } = this.props;
+    const { image, characterDirection } = this.props.simpson;
     const { liked } = this.state;
 
     let characterPosition;
@@ -20,22 +24,27 @@ class Character extends Component {
     return (
       <>
         <div className="character-container">
-          <h3>{character}</h3>
+          <Name simpson={simpson} />
           <div className="quote-flex">
             <div>
-              <p>{quote}</p>
+              <Quote simpson={simpson} />
               <div className="flex">
-                <img
+                <Image
+                  simpson={simpson}
                   className="icon"
                   src={like}
                   onClick={() => {
                     this.setState({ liked: !liked });
                   }}
                 />
-                <button>Delete</button>
+                <Button text="Delete" className="btn" />
               </div>
             </div>
-            <img className={characterPosition} src={image} />
+            <Image
+              simpson={simpson}
+              className={characterPosition}
+              src={image}
+            />
           </div>
         </div>
       </>
