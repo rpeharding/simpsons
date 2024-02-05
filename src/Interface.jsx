@@ -7,16 +7,10 @@ class Interface extends Component {
     console.log(simpsons);
 
     return (
-      <div>
+      <div className="characters">
         {simpsons?.map((simpson) => {
           return (
-            <Character simpson={simpson} />
-            // <div className="character-container">
-            //   <h3>{simpson.character}</h3>
-            //   <p>{simpson.quote}</p>
-            //   <img src={simpson.image} />
-            //   {simpson.characterDirection}
-            // </div>
+            <Character key={simpsons.indexOf(simpson)} simpson={simpson} />
           );
         })}
         ;

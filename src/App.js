@@ -21,6 +21,10 @@ class App extends Component {
   render() {
     // console.log(this.state.simpsons);
     // pass this state down to interface- see video
+
+    if (!this.state.simpsons) {
+      return <p>Loading</p>;
+    }
     return (
       <>
         <Header />
