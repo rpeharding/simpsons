@@ -1,19 +1,38 @@
 import React, { Component } from "react";
 import Character from "./Character";
 import Header from "./Header";
+import Error from "./Error";
 
 class Interface extends Component {
+  state = {};
+
+  onInput = (input) => {
+    this.setState({ userInput: input.target.value });
+  };
+
   render() {
     const { simpsons, onDeleteItem } = this.props;
-    console.log(simpsons);
+
+    let filtered = [...simpsons];
+    if (this.state.userInput) {
+      console.log(this.state.userInput);
+      filtered = filtered.filter((simpson) => {
+        return simpson.character
+          .toLowerCase()
+          .includes(this.state.userInput.toLowerCase());
+      });
+      console.log(filtered);
+    }
 
     return (
       <>
-        <Header />
+        <Header onInput={this.onInput} userInput={this.state.userInput} />
+        {!filtered.length && <Error className="error" />}
         <div className="characters">
-          {simpsons?.map((simpson) => {
+          {filtered?.map((simpson) => {
             return (
               <Character
+                userInput={this.state.userInput}
                 key={simpson.id}
                 id={simpson.id}
                 {...simpson}
@@ -22,7 +41,6 @@ class Interface extends Component {
               />
             );
           })}
-          ;
         </div>
       </>
     );

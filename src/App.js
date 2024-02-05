@@ -15,7 +15,7 @@ class App extends Component {
       `https://thesimpsonsquoteapi.glitch.me/quotes?count=50`
     );
     data.forEach((item) => {
-      item.id = Math.random() + Date.now();
+      item.id = Math.random() + "" + Date.now();
     });
     this.setState({ simpsons: data });
   };
@@ -28,6 +28,8 @@ class App extends Component {
     this.setState({ simpsons });
   };
 
+  onLike = () => {};
+
   render() {
     if (!this.state.simpsons) {
       return <p>Loading</p>;
@@ -38,6 +40,7 @@ class App extends Component {
         <Interface
           simpsons={this.state.simpsons}
           onDeleteItem={this.onDeleteItem}
+          onLike={this.onLike}
         />
       </>
     );
