@@ -5,7 +5,12 @@ import homer from "./images/homer.png";
 class Header extends Component {
   state = {};
 
+  onInput = (input) => {
+    this.setState({ userInput: input.target.value });
+  };
+
   render() {
+    console.log(this.state);
     return (
       <div className="header">
         <img className="logo" alt="simpsons logo" src={logo} />
@@ -13,6 +18,7 @@ class Header extends Component {
           <div className="header-copy">
             <h1>Quotes from your favourite characters</h1>
             <input
+              onInput={this.onInput}
               type="input"
               name="search"
               placeholder="find a character"
