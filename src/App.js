@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
 import Interface from "./Interface";
+import spinner from "./images/spinner.png";
 
 class App extends Component {
   state = {};
@@ -36,9 +37,17 @@ class App extends Component {
     this.setState({ simpsons });
   };
 
+  onSort = () => {
+    const simpsons = [...this.state.simpsons];
+  };
+
   render() {
     if (!this.state.simpsons) {
-      return <p>Loading</p>;
+      return (
+        <div className="spin-container">
+          <img className="spinner" src={spinner} />
+        </div>
+      );
     }
 
     return (

@@ -160,9 +160,43 @@ input {
   }
 }
 
-.liked-summary {
+.liked-summary,
+.sort-summary {
   display: flex;
   gap: 10px;
   align-items: center;
   justify-content: flex-start;
+}
+
+.sort {
+  background-color: #f8f8f8;
+  border-radius: 30px;
+  padding: 5px 5px;
+  color: rgb(55, 11, 83);
+  border: 1px solid rgba(78, 9, 120, 0.269);
+}
+
+.spin-container {
+  background-color: #ffe02e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.spinner {
+  width: 150px;
+}
+
+.spinner {
+  animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
