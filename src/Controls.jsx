@@ -3,7 +3,13 @@ import React, { Component } from "react";
 class Controls extends Component {
   state = {};
   render() {
-    return <></>;
+    const liked = this.props;
+
+    return (
+      <>
+        <p>liked: {liked}</p>
+      </>
+    );
   }
 }
 

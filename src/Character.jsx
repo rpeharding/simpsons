@@ -6,12 +6,10 @@ import Image from "./Image";
 import Button from "./Button";
 
 class Character extends Component {
-  // state = { liked: false };
-
   render() {
     const simpson = this.props;
-    const { image, characterDirection, onDeleteItem, id } = this.props;
-    // const { liked } = this.state;
+    const { image, characterDirection, onDeleteItem, id, liked, onLike } =
+      this.props;
 
     let characterPosition;
 
@@ -33,10 +31,9 @@ class Character extends Component {
                   simpson={simpson}
                   className="icon"
                   src={like}
-                  // onClick={() => {
-                  //   this.setState({ liked: !liked });
-                  // }}
+                  onClick={() => onLike(id)}
                 />
+                {liked && <p>liked!</p>}
                 <button onClick={() => onDeleteItem(id)} className="btn">
                   Delete
                 </button>

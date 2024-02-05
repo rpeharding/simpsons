@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Character from "./Character";
 import Header from "./Header";
 import Error from "./Error";
+import Controls from "./Controls";
 
 class Interface extends Component {
   state = {};
@@ -11,7 +12,7 @@ class Interface extends Component {
   };
 
   render() {
-    const { simpsons, onDeleteItem } = this.props;
+    const { simpsons, onDeleteItem, onLike } = this.props;
 
     let filtered = [...simpsons];
     if (this.state.userInput) {
@@ -24,9 +25,17 @@ class Interface extends Component {
       console.log(filtered);
     }
 
+    let count = 0;
+    simpsons.forEach((simpson) => {
+      if (simpson.liked) count++;
+    });
+
+    console.log(count);
+
     return (
       <>
         <Header onInput={this.onInput} userInput={this.state.userInput} />
+        <Controls liked={count} />
         {!filtered.length && <Error className="error" />}
         <div className="characters">
           {filtered?.map((simpson) => {
@@ -35,9 +44,11 @@ class Interface extends Component {
                 userInput={this.state.userInput}
                 key={simpson.id}
                 id={simpson.id}
+                liked={simpson.liked}
                 {...simpson}
                 // pass down function received from above (use this.props) remember not index but
                 onDeleteItem={onDeleteItem}
+                onLike={onLike}
               />
             );
           })}

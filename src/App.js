@@ -16,6 +16,7 @@ class App extends Component {
     );
     data.forEach((item) => {
       item.id = Math.random() + "" + Date.now();
+      item.liked = false;
     });
     this.setState({ simpsons: data });
   };
@@ -28,7 +29,12 @@ class App extends Component {
     this.setState({ simpsons });
   };
 
-  onLike = () => {};
+  onLike = (id) => {
+    const simpsons = [...this.state.simpsons];
+    const index = simpsons.findIndex((item) => item.id === id);
+    simpsons[index].liked = !simpsons[index].liked;
+    this.setState({ simpsons });
+  };
 
   render() {
     if (!this.state.simpsons) {
