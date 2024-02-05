@@ -1,14 +1,19 @@
 import React, { Component } from "react";
+import Image from "./Image";
+import like from "./images/like.svg";
 
 class Controls extends Component {
-  state = {};
   render() {
-    const liked = this.props;
-
+    const { liked, className } = this.props;
     return (
-      <>
-        <p>liked: {liked}</p>
-      </>
+      <div className={className}>
+        <div className="liked-summary">
+          <Image className="icon" src={like} />
+          <p>liked: {liked}</p>
+        </div>
+
+        <p>sort by:</p>
+      </div>
     );
   }
 }

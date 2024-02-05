@@ -30,12 +30,10 @@ class Interface extends Component {
       if (simpson.liked) count++;
     });
 
-    console.log(count);
-
     return (
       <>
         <Header onInput={this.onInput} userInput={this.state.userInput} />
-        <Controls liked={count} />
+        <Controls liked={count} className="controls" />
         {!filtered.length && <Error className="error" />}
         <div className="characters">
           {filtered?.map((simpson) => {
