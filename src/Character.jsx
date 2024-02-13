@@ -8,17 +8,10 @@ import Button from "./Button";
 class Character extends Component {
   render() {
     const simpson = this.props;
-    const { image, characterDirection, onDeleteItem, id, liked, onLike } =
+    let { image, characterDirection, onDeleteItem, id, liked, onLike } =
       this.props;
 
-    let characterPosition;
-
-    if (characterDirection === "Right") {
-      characterPosition = "right";
-    } else {
-      characterPosition = "left";
-    }
-
+    characterDirection = characterDirection.toLowerCase();
     return (
       <>
         <div className="character-container">
@@ -41,7 +34,7 @@ class Character extends Component {
             </div>
             <Image
               simpson={simpson}
-              className={characterPosition}
+              className={characterDirection}
               src={image}
             />
           </div>

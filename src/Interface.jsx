@@ -3,9 +3,11 @@ import Character from "./Character";
 import Header from "./Header";
 import Error from "./Error";
 import Controls from "./Controls";
+import Joi from "joi";
 
 class Interface extends Component {
   state = {
+    userInput: {},
     options: [
       {
         name: "Select…",
@@ -25,10 +27,31 @@ class Interface extends Component {
         value: "alphaDesc",
       },
     ],
+    errors: {},
   };
 
-  onInput = (input) => {
-    this.setState({ userInput: input.target.value });
+  schema = { search: Joi.string().min(3).max(100) };
+
+  onInput = async (e) => {
+    //make new state that just has user input and put user input under key of event id.
+    const newState = { userInput: { [e.target.id]: e.target.value } };
+    this.setState(newState);
+    const _joiInstance = Joi.object(this.schema);
+
+    try {
+      await _joiInstance.validateAsync(newState.userInput);
+      // clear errors
+      this.setState({ errors: {} });
+    } catch (e) {
+      // convert errors into readable format
+      const errorsMod = {};
+      e.details.forEach((error) => {
+        errorsMod[error.context.key] = error.message;
+      });
+      // send errors to the state.
+      this.setState({ errors: errorsMod });
+      console.log(e);
+    }
   };
 
   handleChange = (selection) => {
@@ -36,6 +59,7 @@ class Interface extends Component {
   };
 
   render() {
+    console.log(this.state);
     const { simpsons, onDeleteItem, onLike } = this.props;
     const { options, value, name } = this.state;
 
@@ -81,12 +105,11 @@ class Interface extends Component {
     }
 
     let filtered = [...simpsons];
-    if (this.state.userInput) {
-      console.log(this.state.userInput);
+    if (this.state.userInput.search) {
       filtered = filtered.filter((simpson) => {
         return simpson.character
           .toLowerCase()
-          .includes(this.state.userInput.toLowerCase());
+          .includes(this.state.userInput.search.toLowerCase());
       });
       console.log(filtered);
     }
@@ -98,7 +121,11 @@ class Interface extends Component {
 
     return (
       <>
-        <Header onInput={this.onInput} userInput={this.state.userInput} />
+        <Header
+          errors={this.state.errors}
+          onInput={this.onInput}
+          userInput={this.state.userInput}
+        />
         <Controls
           liked={count}
           className="controls"

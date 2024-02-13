@@ -21,11 +21,13 @@ class Header extends Component {
             <h1>Quotes from your favourite characters</h1>
             <input
               onInput={this.props.onInput}
-              type="input"
+              type="text"
               name="search"
+              id="search"
               placeholder="find a character"
               className="input"
             />
+            <p>{this.props.errors.search}</p>
           </div>
         </div>
         <img className="hero-image" alt="homer with donut" src={homer} />
